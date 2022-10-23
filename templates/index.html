@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>New page goddamit!</title>
+</head>
+<body>
+<form action="{% url 'thanks_page' %}", method="POST">
+    {% csrf_token %}
+    <label>Name</label>
+    <input type="text", name="name">
+    <label>Phone</label>
+    <input type="text", name="phone">
+    <button type="submit">Send</button>
+</form>
+
+{% if object_list %}
+{% for obj in object_list %}
+    <h2>{{ obj.id }}</h2>
+    <h2>Дата регистрации {{ obj.order_dt }}</h2>
+    <h2>Имя {{ obj.order_username }}</h2>
+    <h2>номер Телефона {{ obj.order_phone }}</h2>
+    <br>
+{% endfor %}
+{% else %}
+    <h1>А данных тут как таковых-то и нет!</h1>
+{% endif %}
+</body>
+</html>
